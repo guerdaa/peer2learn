@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.activities.GroupSearchPrivateFragment"
+    android:id="@+id/group_search_private_fragment">
+
+    <ImageView
+        android:id="@+id/search_private_background_image_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/lock"
+        android:layout_marginTop="30dp" />
+    <TextView
+        android:id="@+id/search_a_private_group_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_private_group"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/search_private_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:hint="@string/enter_id_of_private_group"
+        android:layout_margin="20dp"
+        android:textSize="15dp"
+        android:maxLines="1"
+        android:lines="1"
+        android:singleLine="true"
+        android:textColor="@color/blue"
+        android:background="@drawable/round_blue_edit_text"/>
+    <TextView
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@color/green"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:text="@string/submit"
+        android:gravity="center"
+        android:textStyle="bold" />
+</LinearLayout>

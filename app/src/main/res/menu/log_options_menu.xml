@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/sign_out"
+            android:title="@string/sign_out"
+            />
+
+        <item
+            android:id="@+id/delete_acc"
+            android:title="@string/delete_account"
+            />
+
+        <item
+            android:id="@+id/back_to_homepage"
+            android:title="@string/back_to_homepage"
+            />
+
+</menu>

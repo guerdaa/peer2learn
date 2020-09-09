@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>detekt report</title>
+    <style>
+h2 {
+  background-color: #666666;
+  padding: 0.2em;
+  color: #ffffff;
+}
+h3 {
+  background-color:#f8dfdf;
+  padding:0.5em;
+}
+.rule {
+  background-color: #dddddd;
+  padding: 0.3em;
+  font-weight: bold;
+}
+.description {
+  color:#000000;
+  padding:0.3em;
+}
+.location {
+  color: #690505;
+  font-family: monospace;
+  display: block;
+}
+.message {
+  font-size: 0.8em;
+  color: #444444;
+  display: block;
+  margin-top: 1pt;
+}
+.rule-container {
+  border: 0.1em dashed #dddddd;
+  padding: 0.1em;
+  line-height: 1.5em;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+pre {
+  border: 1px solid #e0e0e0;
+  overflow: scroll;
+}
+.lineno {
+  color: #999999;
+  background-color: #f0f0f0;
+}
+.error {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwCFR4T/3uLMgAAADxJREFUCNdNyLERQEAABMCjL4lQwIzcjErpguAL+C9AvgKJDbeD/PRpLdm35Hm+MU+cB+tCKaJW4L4YBy+CAiLJrFs9mgAAAABJRU5ErkJggg==) bottom repeat-x;
+}
+.exception {
+  color: #b60808;
+  display: inline-block;
+  background-color: #ecdada;
+  border-color: #b60808;
+  border-radius: 10px;
+  border: solid 2px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>detekt report</h1>
+
+<h2>Metrics</h2>
+
+<div>
+  <ul>
+    <li>369 number of properties</li>
+    <li>317 number of functions</li>
+    <li>76 number of classes</li>
+    <li>8 number of packages</li>
+    <li>66 number of kt files</li>
+  </ul>
+</div>
+
+
+<h2>Complexity Report</h2>
+
+<div>
+  <ul>
+    <li>5,799 lines of code (loc)</li>
+    <li>3,934 source lines of code (sloc)</li>
+    <li>2,630 logical lines of code (lloc)</li>
+    <li>1,213 comment lines of code (cloc)</li>
+    <li>510 cyclomatic complexity (mcc)</li>
+    <li>216 cognitive complexity</li>
+    <li>171 number of total code smells</li>
+    <li>30% comment source ratio</li>
+    <li>193 mcc per 1,000 lloc</li>
+    <li>65 code smells per 1,000 lloc</li>
+  </ul>
+</div>
+
+
+<h2>Findings</h2>
+<div>Total: 171
+  <h3>complexity: 8</h3>
+  <details id="ComplexCondition" open="open">
+    <summary class="rule-container"><span class="rule">ComplexCondition: 2 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/SignInViewModel.kt:167:12</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
+        <pre><code><span class="lineno"> 164 </span>     * If a user exists in the database, starts home activity, otherwise creates a new entry in database
+<span class="lineno"> 165 </span>     */
+<span class="lineno"> 166 </span>    fun observeUserRetrieved(newValue: Student?, signInListener: ISignInListener) {
+<span class="lineno"> 167 </span>        if(<span class="error">!newValue?.id.isNullOrEmpty()</span>
+<span class="lineno"> 168 </span><span class="error">            &amp;&amp; !newValue?.nickname.isNullOrEmpty()</span>
+<span class="lineno"> 169 </span><span class="error">            &amp;&amp; !newValue?.studyCourse.isNullOrEmpty()</span>
+<span class="lineno"> 170 </span><span class="error">            &amp;&amp; newValue?.university != null</span>) {
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/SignInViewModel.kt:172:19</span><span class="message">This condition is too complex (6). Defined complexity threshold for conditions is set to '4'</span>
+        <pre><code><span class="lineno"> 169 </span>            &amp;&amp; !newValue?.studyCourse.isNullOrEmpty()
+<span class="lineno"> 170 </span>            &amp;&amp; newValue?.university != null) {
+<span class="lineno"> 171 </span>            signInListener.startHomeActivity(newValue)
+<span class="lineno"> 172 </span>        } else if(<span class="error">(newValue == null &amp;&amp; !currentUidLiveData.value.isNullOrEmpty())</span>
+<span class="lineno"> 173 </span><span class="error">            || (!newValue?.id.isNullOrEmpty()</span>
+<span class="lineno"> 174 </span><span class="error">                    &amp;&amp; newValue?.nickname.isNullOrEmpty()</span>
+<span class="lineno"> 175 </span><span class="error">                    &amp;&amp; newValue?.studyCourse.isNullOrEmpty()</span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="LongParameterList" open="open">
+    <summary class="rule-container"><span class="rule">LongParameterList: 3 </span><span class="description">The more parameters a function has the more complex it is. Long parameter lists are often used to control complex algorithms and violate the Single Responsibility Principle. Prefer functions with short parameter lists.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Message.kt:6:15</span><span class="message">The constructor(id: String, message: String, seenBy: HashMap&lt;String, Boolean&gt;, senderID: String, senderName: String, order: Int, date: Long) has too many parameters. The current threshold is set to 7.</span>
+        <pre><code><span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * A model class that represents the messages that are sent in the chat of a study group
+<span class="lineno">   5 </span> */
+<span class="lineno">   6 </span>class Message <span class="error">(</span>
+<span class="lineno">   7 </span><span class="error">    var id: String,</span>
+<span class="lineno">   8 </span><span class="error">    var message: String,</span>
+<span class="lineno">   9 </span><span class="error">    val seenBy: HashMap&lt;String, Boolean&gt;,</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/StudyGroup.kt:8:18</span><span class="message">The constructor(id: String, title: String, description: String, progress: Int, maxMembers: Int, accessCode: String, university: University, language: Language, numberOfMembers: Int) has too many parameters. The current threshold is set to 7.</span>
+        <pre><code><span class="lineno">   5 </span>/**
+<span class="lineno">   6 </span> * A model class that represents a Study group
+<span class="lineno">   7 </span> */
+<span class="lineno">   8 </span>class StudyGroup <span class="error">(</span>
+<span class="lineno">   9 </span><span class="error">    var id: String,</span>
+<span class="lineno">  10 </span><span class="error">    val title: String,</span>
+<span class="lineno">  11 </span><span class="error">    val description: String,</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPublicViewModel.kt:178:21</span><span class="message">The function searchGroups(progress: String, language: String, minimumUsers: String, moduleName: String, university: University?, groupSearchPublicListener: IGroupSearchPublicListener) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno"> 175 </span>    /**
+<span class="lineno"> 176 </span>     * Searches for a group with the chosen by the user filters, depending on that, whether the corresponding text field is empty or not
+<span class="lineno"> 177 </span>     */
+<span class="lineno"> 178 </span>    fun searchGroups<span class="error">(progress: String, language: String, minimumUsers: String, moduleName: String,</span>
+<span class="lineno"> 179 </span><span class="error">                             university: University?, groupSearchPublicListener: IGroupSearchPublicListener)</span> {
+<span class="lineno"> 180 </span>        progress.let { text -&gt;
+<span class="lineno"> 181 </span>            groupSearchPublicListener.setProgressText(if (text.isNullOrEmpty()) Constants.EMPTY_FILTER else &quot;$text%&quot;)
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="TooManyFunctions" open="open">
+    <summary class="rule-container"><span class="rule">TooManyFunctions: 3 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:30:7</span><span class="message">Class 'CreateAppointmentFragment' with '12' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  27 </span>/**
+<span class="lineno">  28 </span> * This Fragment is used to create/edit/delete appointments or categories inside a group
+<span class="lineno">  29 </span> */
+<span class="lineno">  30 </span>class <span class="error">CreateAppointmentFragment</span> : BottomSheetDialogFragment(), ICreateAppointmentListener {
+<span class="lineno">  31 </span>
+<span class="lineno">  32 </span>    private lateinit var createAppointementViewModel: CreateAppointementViewModel
+<span class="lineno">  33 </span>    /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:23:7</span><span class="message">Class 'CreateGroupViewModel' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  20 </span>/**
+<span class="lineno">  21 </span> * Holds the logic of the CreateGroupActivity
+<span class="lineno">  22 </span> */
+<span class="lineno">  23 </span>class <span class="error">CreateGroupViewModel</span>: ViewModel {
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    private val _createGroupLiveData = MutableLiveData&lt;RepositoryProgress&gt;()
+<span class="lineno">  26 </span>    val createGroupLiveData: LiveData&lt;RepositoryProgress&gt;
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ProfileViewModel.kt:31:7</span><span class="message">Class 'ProfileViewModel' with '17' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  28 </span>/**
+<span class="lineno">  29 </span> * Holds the logic of the ProfileActivity
+<span class="lineno">  30 </span> */
+<span class="lineno">  31 </span>class <span class="error">ProfileViewModel</span> : ViewModel {
+<span class="lineno">  32 </span>
+<span class="lineno">  33 </span>    private val storageReference = FirebaseStorage.getInstance()
+<span class="lineno">  34 </span>    private val firebaseAuth = FirebaseAuth.getInstance()
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>empty-blocks: 9</h3>
+  <details id="EmptyFunctionBlock" open="open">
+    <summary class="rule-container"><span class="rule">EmptyFunctionBlock: 9 </span><span class="description">Empty block of code detected. As they serve no purpose they should be removed.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MemberRepository.kt:26:43</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno">  23 </span>    /***
+<span class="lineno">  24 </span>     * Creates a member [instance] in the member collection of a specific group with [instance].groupId
+<span class="lineno">  25 </span>     */
+<span class="lineno">  26 </span>    override fun create(instance: Member) <span class="error">{</span>
+<span class="lineno">  27 </span><span class="error">    }</span>
+<span class="lineno">  28 </span>
+<span class="lineno">  29 </span>    /***
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MessageRepository.kt:33:44</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno">  30 </span>    /***
+<span class="lineno">  31 </span>     * Creates a Message [instance] inside the [memberCollection].
+<span class="lineno">  32 </span>     */
+<span class="lineno">  33 </span>    override fun create(instance: Message) <span class="error">{</span>
+<span class="lineno">  34 </span><span class="error">    }</span>
+<span class="lineno">  35 </span>    /***
+<span class="lineno">  36 </span>     * Deletes a Message [instance] inside the [memberCollection].
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MessageRepository.kt:38:44</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno">  35 </span>    /***
+<span class="lineno">  36 </span>     * Deletes a Message [instance] inside the [memberCollection].
+<span class="lineno">  37 </span>     */
+<span class="lineno">  38 </span>    override fun delete(instance: Message) <span class="error">{</span>
+<span class="lineno">  39 </span><span class="error">    }</span>
+<span class="lineno">  40 </span>    /***
+<span class="lineno">  41 </span>     * Updates a Message [instance] inside the [memberCollection].
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MessageRepository.kt:43:44</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno">  40 </span>    /***
+<span class="lineno">  41 </span>     * Updates a Message [instance] inside the [memberCollection].
+<span class="lineno">  42 </span>     */
+<span class="lineno">  43 </span>    override fun update(instance: Message) <span class="error">{</span>
+<span class="lineno">  44 </span><span class="error">    }</span>
+<span class="lineno">  45 </span>
+<span class="lineno">  46 </span>    /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/PrivateGroupRepository.kt:43:47</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno">  40 </span>     * Deletes an private Study Group [instance] inside the [privateGroupCollection]
+<span class="lineno">  41 </span>     */
+<span class="lineno">  42 </span>
+<span class="lineno">  43 </span>    override fun delete(instance: StudyGroup) <span class="error">{</span>
+<span class="lineno">  44 </span><span class="error">    }</span>
+<span class="lineno">  45 </span>    /**
+<span class="lineno">  46 </span>     * Updates an private Study Group [instance] inside the [privateGroupCollection]
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/PrivateGroupRepository.kt:48:47</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno">  45 </span>    /**
+<span class="lineno">  46 </span>     * Updates an private Study Group [instance] inside the [privateGroupCollection]
+<span class="lineno">  47 </span>     */
+<span class="lineno">  48 </span>    override fun update(instance: StudyGroup) <span class="error">{</span>
+<span class="lineno">  49 </span><span class="error">    }</span>
+<span class="lineno">  50 </span>    /**
+<span class="lineno">  51 </span>     * Retrieves an private Study Group corresponding to [accessCode] inside the [privateGroupCollection]
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/ChatsFragment.kt:151:94</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno"> 148 </span>            }
+<span class="lineno"> 149 </span>        }
+<span class="lineno"> 150 </span>
+<span class="lineno"> 151 </span>        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) <span class="error">{}</span>
+<span class="lineno"> 152 </span>
+<span class="lineno"> 153 </span>        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+<span class="lineno"> 154 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/ChatsFragment.kt:153:91</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno"> 150 </span>
+<span class="lineno"> 151 </span>        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+<span class="lineno"> 152 </span>
+<span class="lineno"> 153 </span>        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) <span class="error">{}</span>
+<span class="lineno"> 154 </span>
+<span class="lineno"> 155 </span>    }
+<span class="lineno"> 156 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/SignInActivity.kt:57:34</span><span class="message">This empty block of code can be removed.</span>
+        <pre><code><span class="lineno">  54 </span>    /**
+<span class="lineno">  55 </span>     * Assures that when the back button is pressed, nothing will happen
+<span class="lineno">  56 </span>     */
+<span class="lineno">  57 </span>    override fun onBackPressed() <span class="error">{</span>
+<span class="lineno">  58 </span><span class="error">    }</span>
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>    private val signInWithGoogleClickListener =  View.OnClickListener {
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>style: 154</h3>
+  <details id="MagicNumber" open="open">
+    <summary class="rule-container"><span class="rule">MagicNumber: 22 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Message.kt:13:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  10 </span>    val senderID: String,
+<span class="lineno">  11 </span>    val senderName: String,
+<span class="lineno">  12 </span>    val order: Int,
+<span class="lineno">  13 </span>    val date: Long = System.currentTimeMillis() / <span class="error">1000</span>
+<span class="lineno">  14 </span>    ){
+<span class="lineno">  15 </span>
+<span class="lineno">  16 </span>    constructor(): this(&quot;&quot;, &quot;&quot;, hashMapOf(), &quot;&quot;, &quot;&quot;, 0,System.currentTimeMillis() / 1000)
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Message.kt:16:85</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  13 </span>    val date: Long = System.currentTimeMillis() / 1000
+<span class="lineno">  14 </span>    ){
+<span class="lineno">  15 </span>
+<span class="lineno">  16 </span>    constructor(): this(&quot;&quot;, &quot;&quot;, hashMapOf(), &quot;&quot;, &quot;&quot;, 0,System.currentTimeMillis() / <span class="error">1000</span>)
+<span class="lineno">  17 </span>}
+<span class="lineno">  18 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:145:44</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 142 </span>                appointmentView.setOnLongClickListener {
+<span class="lineno"> 143 </span>                    deleteAppointment(appointment)
+<span class="lineno"> 144 </span>                }
+<span class="lineno"> 145 </span>                appointmentView.textSize = <span class="error">20.0f</span>
+<span class="lineno"> 146 </span>                appointmentView.text = &quot;${appointment.title}  ${Utils.convertDate(appointment.date)}&quot;
+<span class="lineno"> 147 </span>                appointments_holder.addView(appointmentView)
+<span class="lineno"> 148 </span>            }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:169:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 166 </span>    private fun validate(): Boolean {
+<span class="lineno"> 167 </span>        return if(category_name_edit_text.text.trim().isNotEmpty()) {
+<span class="lineno"> 168 </span>            submit_button.isEnabled = false
+<span class="lineno"> 169 </span>            submit_button.alpha = <span class="error">0.3f</span>
+<span class="lineno"> 170 </span>            true
+<span class="lineno"> 171 </span>        } else {
+<span class="lineno"> 172 </span>            false
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateGroupActivity.kt:149:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 146 </span>     */
+<span class="lineno"> 147 </span>    private fun createGroup() {
+<span class="lineno"> 148 </span>        submit_button.isEnabled = false
+<span class="lineno"> 149 </span>        submit_button.alpha = <span class="error">0.3f</span>
+<span class="lineno"> 150 </span>        val title = module_edit_text.text.trim().toString().toLowerCase()
+<span class="lineno"> 151 </span>        val description = description_edit_text.text.trim().toString()
+<span class="lineno"> 152 </span>        val numberOfPersons = number_of_users_text_view.text.toString().toInt()
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupActivity.kt:91:48</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  88 </span>        when(view_pager.currentItem) {
+<span class="lineno">  89 </span>            0 -&gt; {
+<span class="lineno">  90 </span>                chat_text_view.alpha = 1.0f
+<span class="lineno">  91 </span>                appointments_text_view.alpha = <span class="error">0.3f</span>
+<span class="lineno">  92 </span>                overview_text_view.alpha = 0.3f
+<span class="lineno">  93 </span>            }
+<span class="lineno">  94 </span>            1 -&gt; {
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupActivity.kt:92:44</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  89 </span>            0 -&gt; {
+<span class="lineno">  90 </span>                chat_text_view.alpha = 1.0f
+<span class="lineno">  91 </span>                appointments_text_view.alpha = 0.3f
+<span class="lineno">  92 </span>                overview_text_view.alpha = <span class="error">0.3f</span>
+<span class="lineno">  93 </span>            }
+<span class="lineno">  94 </span>            1 -&gt; {
+<span class="lineno">  95 </span>                chat_text_view.alpha = 0.3f
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupActivity.kt:95:40</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  92 </span>                overview_text_view.alpha = 0.3f
+<span class="lineno">  93 </span>            }
+<span class="lineno">  94 </span>            1 -&gt; {
+<span class="lineno">  95 </span>                chat_text_view.alpha = <span class="error">0.3f</span>
+<span class="lineno">  96 </span>                appointments_text_view.alpha = 1.0f
+<span class="lineno">  97 </span>                overview_text_view.alpha = 0.3f
+<span class="lineno">  98 </span>            }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupActivity.kt:97:44</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  94 </span>            1 -&gt; {
+<span class="lineno">  95 </span>                chat_text_view.alpha = 0.3f
+<span class="lineno">  96 </span>                appointments_text_view.alpha = 1.0f
+<span class="lineno">  97 </span>                overview_text_view.alpha = <span class="error">0.3f</span>
+<span class="lineno">  98 </span>            }
+<span class="lineno">  99 </span>            else -&gt; {
+<span class="lineno"> 100 </span>                chat_text_view.alpha = 0.3f
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupActivity.kt:100:40</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  97 </span>                overview_text_view.alpha = 0.3f
+<span class="lineno">  98 </span>            }
+<span class="lineno">  99 </span>            else -&gt; {
+<span class="lineno"> 100 </span>                chat_text_view.alpha = <span class="error">0.3f</span>
+<span class="lineno"> 101 </span>                appointments_text_view.alpha = 0.3f
+<span class="lineno"> 102 </span>                overview_text_view.alpha = 1.0f
+<span class="lineno"> 103 </span>            }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupActivity.kt:101:48</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  98 </span>            }
+<span class="lineno">  99 </span>            else -&gt; {
+<span class="lineno"> 100 </span>                chat_text_view.alpha = 0.3f
+<span class="lineno"> 101 </span>                appointments_text_view.alpha = <span class="error">0.3f</span>
+<span class="lineno"> 102 </span>                overview_text_view.alpha = 1.0f
+<span class="lineno"> 103 </span>            }
+<span class="lineno"> 104 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:198:28</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 195 </span>            Toast.makeText(context, context.getString(R.string.title_required), Toast.LENGTH_SHORT).show()
+<span class="lineno"> 196 </span>            return false
+<span class="lineno"> 197 </span>        }
+<span class="lineno"> 198 </span>        if (title.length &gt; <span class="error">64</span>) {
+<span class="lineno"> 199 </span>            Toast.makeText(context, context.getString(R.string.title_too_long), Toast.LENGTH_SHORT).show()
+<span class="lineno"> 200 </span>            return false
+<span class="lineno"> 201 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:207:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 204 </span>            Toast.makeText(context, context.getString(R.string.description_required), Toast.LENGTH_SHORT).show()
+<span class="lineno"> 205 </span>            return false
+<span class="lineno"> 206 </span>        }
+<span class="lineno"> 207 </span>        if (numberOfPersons &lt;= 0 || numberOfPersons &gt; <span class="error">99</span>) {
+<span class="lineno"> 208 </span>            Toast.makeText(context, context.getString(R.string.invalid_num_of_persons), Toast.LENGTH_SHORT).show()
+<span class="lineno"> 209 </span>            return false
+<span class="lineno"> 210 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:222:68</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 219 </span>     * Generates a randon String, that is used as an access code
+<span class="lineno"> 220 </span>     */
+<span class="lineno"> 221 </span>    fun generateAccessCode() {
+<span class="lineno"> 222 </span>        val randomUI = UUID.randomUUID().toString().subSequence(0, <span class="error">8</span>).toString()
+<span class="lineno"> 223 </span>        setAccessCode(randomUI)
+<span class="lineno"> 224 </span>        privatAccessCode = randomUI
+<span class="lineno"> 225 </span>    }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/CategoriesRecyclerViewAdapter.kt:147:44</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 144 </span>                }
+<span class="lineno"> 145 </span>                appointmentView.text =
+<span class="lineno"> 146 </span>                    &quot;${appointment.title}  ${Utils.convertDate(appointment.date)}&quot;
+<span class="lineno"> 147 </span>                appointmentView.textSize = <span class="error">20.0f</span>
+<span class="lineno"> 148 </span>                itemView.appointments_holder.addView(appointmentView)
+<span class="lineno"> 149 </span>            }
+<span class="lineno"> 150 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ChatRecyclerViewAdapter.kt:44:86</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  41 </span>            itemView.receive_message_layout.visibility = View.VISIBLE
+<span class="lineno">  42 </span>            itemView.receiver_name_text_view.text = message.senderName
+<span class="lineno">  43 </span>            itemView.received_message_text_view.text = message.message
+<span class="lineno">  44 </span>            itemView.received_date_text_view.text = Utils.convertDate(message.date * <span class="error">1000</span>)
+<span class="lineno">  45 </span>        }
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>        /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ChatRecyclerViewAdapter.kt:57:82</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  54 </span>            itemView.receive_message_layout.visibility = View.GONE
+<span class="lineno">  55 </span>            itemView.sender_name_text_view.text = message.senderName
+<span class="lineno">  56 </span>            itemView.sent_message_text_view.text = message.message
+<span class="lineno">  57 </span>            itemView.sent_date_text_view.text = Utils.convertDate(message.date * <span class="error">1000</span>)
+<span class="lineno">  58 </span>        }
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>        /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ChatRecyclerViewAdapter.kt:69:87</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  66 </span>            itemView.receive_file_message_layout.visibility = View.GONE
+<span class="lineno">  67 </span>            itemView.receive_message_layout.visibility = View.GONE
+<span class="lineno">  68 </span>            itemView.sender_file_name_text_view.text = message.senderName
+<span class="lineno">  69 </span>            itemView.sent_file_date_text_view.text = Utils.convertDate(message.date * <span class="error">1000</span>)
+<span class="lineno">  70 </span>            Glide.with(context).load(message.message).fitCenter()
+<span class="lineno">  71 </span>                .into(itemView.sent_file_message_image_view)
+<span class="lineno">  72 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ChatRecyclerViewAdapter.kt:83:91</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  80 </span>            itemView.receive_file_message_layout.visibility = View.VISIBLE
+<span class="lineno">  81 </span>            itemView.receive_message_layout.visibility = View.GONE
+<span class="lineno">  82 </span>            itemView.receiver_name_file_text_view.text = message.senderName
+<span class="lineno">  83 </span>            itemView.received_file_date_text_view.text = Utils.convertDate(message.date * <span class="error">1000</span>)
+<span class="lineno">  84 </span>            Glide.with(context).load(message.message).fitCenter()
+<span class="lineno">  85 </span>                .into(itemView.received_message_file_image_view)
+<span class="lineno">  86 </span>            itemView.setOnClickListener {
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/GroupsRecyclerViewAdapter.kt:29:79</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  26 </span>         * method used to set the [lastMessage] below the group detail
+<span class="lineno">  27 </span>         */
+<span class="lineno">  28 </span>        fun setLastMessage(lastMessage: Message) {
+<span class="lineno">  29 </span>            itemView.date_text_view.text = Utils.convertDate(lastMessage.date*<span class="error">1000</span>)
+<span class="lineno">  30 </span>            itemView.last_message_text_view.text =
+<span class="lineno">  31 </span>                &quot;${lastMessage.senderName}: ${if (lastMessage.message.length &gt; 30) lastMessage.message.substring(0, 30) else lastMessage.message}&quot;
+<span class="lineno">  32 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/GroupsRecyclerViewAdapter.kt:31:80</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  28 </span>        fun setLastMessage(lastMessage: Message) {
+<span class="lineno">  29 </span>            itemView.date_text_view.text = Utils.convertDate(lastMessage.date*1000)
+<span class="lineno">  30 </span>            itemView.last_message_text_view.text =
+<span class="lineno">  31 </span>                &quot;${lastMessage.senderName}: ${if (lastMessage.message.length &gt; <span class="error">30</span>) lastMessage.message.substring(0, 30) else lastMessage.message}&quot;
+<span class="lineno">  32 </span>        }
+<span class="lineno">  33 </span>
+<span class="lineno">  34 </span>        /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/GroupsRecyclerViewAdapter.kt:31:117</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  28 </span>        fun setLastMessage(lastMessage: Message) {
+<span class="lineno">  29 </span>            itemView.date_text_view.text = Utils.convertDate(lastMessage.date*1000)
+<span class="lineno">  30 </span>            itemView.last_message_text_view.text =
+<span class="lineno">  31 </span>                &quot;${lastMessage.senderName}: ${if (lastMessage.message.length &gt; 30) lastMessage.message.substring(0, <span class="error">30</span>) else lastMessage.message}&quot;
+<span class="lineno">  32 </span>        }
+<span class="lineno">  33 </span>
+<span class="lineno">  34 </span>        /**
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MaxLineLength" open="open">
+    <summary class="rule-container"><span class="rule">MaxLineLength: 70 </span><span class="description">Line detected that is longer than the defined maximum line length in the code style.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/GroupRepository.kt:110:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 107 </span>            }
+<span class="lineno"> 108 </span>    }
+<span class="lineno"> 109 </span>
+<span class="lineno"> 110 </span>    <span class="error">/**</span>
+<span class="lineno"> 111 </span><span class="error">     * Retrieves the groups, using [listOfId] - an ArrayList that cointans the ids of the groups in which the current user participates.</span>
+<span class="lineno"> 112 </span><span class="error">     * This is a help method that is called when HomeActivity is started to show the joined groups of the current user.</span>
+<span class="lineno"> 113 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MemberRepository.kt:47:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  44 </span>            }
+<span class="lineno">  45 </span>    }
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>    <span class="error">/***</span>
+<span class="lineno">  48 </span><span class="error">     * Updates the data a member, in the member collection of a specific group with [instance].groupId, with the data in [instance].</span>
+<span class="lineno">  49 </span><span class="error">     */</span>
+<span class="lineno">  50 </span><span class="error">    override fun update(instance: Member) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MemberRepository.kt:65:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  62 </span>            }
+<span class="lineno">  63 </span>    }
+<span class="lineno">  64 </span>
+<span class="lineno">  65 </span>    <span class="error">/***</span>
+<span class="lineno">  66 </span><span class="error">     * Updates the admin of the group with [groupId] by checking :</span>
+<span class="lineno">  67 </span><span class="error">     * Whether one of the members already an admin is and if that is the case nothing is changed</span>
+<span class="lineno">  68 </span><span class="error">     * If no one from the members list is admin, then the first member is made admin</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MemberRepository.kt:100:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  97 </span>                updateAdminOfGroupLiveData.value = RepositoryProgress.FAILED
+<span class="lineno">  98 </span>            }
+<span class="lineno">  99 </span>    }
+<span class="lineno"> 100 </span>    <span class="error">/***</span>
+<span class="lineno"> 101 </span><span class="error">     * Returns the number of members in a group with the [groupId]</span>
+<span class="lineno"> 102 </span><span class="error">     * Used to detect whether the group should be deleted if it's empty or the admins inside a group should be updated if there are no more admins inside</span>
+<span class="lineno"> 103 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MessageRepository.kt:81:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  78 </span>            .update(&quot;${Constants.SEEN_BY_ATTRIBUT}.${userId}&quot;, true)
+<span class="lineno">  79 </span>    }
+<span class="lineno">  80 </span>
+<span class="lineno">  81 </span>    <span class="error">/**</span>
+<span class="lineno">  82 </span><span class="error">     * Used to send a message.</span>
+<span class="lineno">  83 </span><span class="error">     * Creates an empty document in the [currentGroupId] messages collection and then sets the value of the document in the database</span>
+<span class="lineno">  84 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MessageRepository.kt:97:9</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  94 </span>     * Used to send a downloadable file
+<span class="lineno">  95 </span>     */
+<span class="lineno">  96 </span>    fun sendFile(data: Intent, chatsListener: IChatsListener, currentGroupId: String) {
+<span class="lineno">  97 </span>        <span class="error">val ref = FirebaseStorage.getInstance().getReference(&quot;${Constants.CHAT_STORAGE_PATH}${currentGroupId}/${UUID.randomUUID()}.jpg&quot;)</span>
+<span class="lineno">  98 </span>        val uploadTask = ref.putFile(data.data!!)
+<span class="lineno">  99 </span>        uploadTask.continueWithTask { task -&gt;
+<span class="lineno"> 100 </span>            ref.downloadUrl
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MessageRepository.kt:119:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 116 </span>            ).build()
+<span class="lineno"> 117 </span>    }
+<span class="lineno"> 118 </span>
+<span class="lineno"> 119 </span>    <span class="error">/**</span>
+<span class="lineno"> 120 </span><span class="error">     * Used to detect the receiving or the sent of a new message, so that the adapter will scroll to the bottom and show the new message</span>
+<span class="lineno"> 121 </span><span class="error">     */</span>
+<span class="lineno"> 122 </span><span class="error">    fun register(currentGroupId: String, chatsListener: IChatsListener): ListenerRegistration {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/AppointmentsOverviewFragment.kt:29:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  26 </span>            displayCategories()
+<span class="lineno">  27 </span>        }
+<span class="lineno">  28 </span>    }
+<span class="lineno">  29 </span>    <span class="error">/**</span>
+<span class="lineno">  30 </span><span class="error">     * This is a help method, that is called when there are any changes made to the categories list inside the group with [currentGroupId]</span>
+<span class="lineno">  31 </span><span class="error">     * Retrieves the changed liveData and displays it</span>
+<span class="lineno">  32 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/AppointmentsOverviewFragment.kt:80:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  77 </span>        })
+<span class="lineno">  78 </span>        add_category_button.setOnClickListener {
+<span class="lineno">  79 </span>            requireActivity().supportFragmentManager.beginTransaction().
+<span class="lineno">  80 </span>            <span class="error">add(CreateAppointmentFragment.newInstance(null, currentGroupId, dismissListener), CreateAppointmentFragment.TAG)</span>.commitNowAllowingStateLoss()
+<span class="lineno">  81 </span>        }
+<span class="lineno">  82 </span>    }
+<span class="lineno">  83 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/AppointmentsOverviewFragment.kt:92:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  89 </span>    override fun initCategoriesRecyclerViewAdapter() {
+<span class="lineno">  90 </span>        categories_recycler_view.layoutManager = LinearLayoutManager(requireContext())
+<span class="lineno">  91 </span>        categories_recycler_view.adapter = object : CategoriesRecyclerViewAdapter(
+<span class="lineno">  92 </span>            <span class="error">appointementsOverviewViewModel.retrievedCategoriesLiveData.value!!</span>, requireContext(), (requireActivity() as GroupActivity).isUserAdmin) {
+<span class="lineno">  93 </span>            override fun delete() {
+<span class="lineno">  94 </span>                appointementsOverviewViewModel.deleteCategory(clickedCategory!!)
+<span class="lineno">  95 </span>                displayCategories()
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/AppointmentsOverviewFragment.kt:99:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  96 </span>            }
+<span class="lineno">  97 </span>            override fun edit() {
+<span class="lineno">  98 </span>                requireActivity().supportFragmentManager.beginTransaction().
+<span class="lineno">  99 </span>                <span class="error">add(CreateAppointmentFragment.newInstance(clickedCategory, currentGroupId, dismissListener), CreateAppointmentFragment.TAG)</span>.commitNowAllowingStateLoss()
+<span class="lineno"> 100 </span>            }
+<span class="lineno"> 101 </span>        }
+<span class="lineno"> 102 </span>    }
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/ChatsFragment.kt:127:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 124 </span>        chatsViewModel.unregister()
+<span class="lineno"> 125 </span>    }
+<span class="lineno"> 126 </span>
+<span class="lineno"> 127 </span>    <span class="error">/**</span>
+<span class="lineno"> 128 </span><span class="error">     *  In this method, the chatRecyclerViewAdapter starts listening to the changes that occurs inside the MessageRepositoy</span>
+<span class="lineno"> 129 </span><span class="error">     *  and displays the new added message</span>
+<span class="lineno"> 130 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:73:66</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  70 </span>
+<span class="lineno">  71 </span>    private val submitClickListener = View.OnClickListener {
+<span class="lineno">  72 </span>        var appointment: Appointment? = null
+<span class="lineno">  73 </span>        if (appointment_name_edit_text.text.trim().isNotEmpty()) <span class="error">{</span>
+<span class="lineno">  74 </span><span class="error">            val formatter = SimpleDateFormat(&quot;dd.MM.yyyy HH:mm&quot;)</span>
+<span class="lineno">  75 </span><span class="error">            formatter.isLenient = false</span>
+<span class="lineno">  76 </span><span class="error">            val dateString = &quot;${date_text_view.text} ${time_text_view.text}&quot;</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:82:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  79 </span>            appointment =
+<span class="lineno">  80 </span>                Appointment(appointment_name_edit_text.text.trim().toString(), dateInMillis)
+<span class="lineno">  81 </span>            if(dateInMillis &lt; System.currentTimeMillis()) {
+<span class="lineno">  82 </span>                <span class="error">Toast.makeText(requireContext(), requireContext().getString(R.string.date_in_the_past), Toast.LENGTH_SHORT).show()</span>
+<span class="lineno">  83 </span>                return@OnClickListener
+<span class="lineno">  84 </span>            }
+<span class="lineno">  85 </span>        } else if(add_appointment_layout.visibility == View.VISIBLE &amp;&amp; appointment_name_edit_text.text.trim().isEmpty()) {
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:176:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 173 </span>        }
+<span class="lineno"> 174 </span>    }
+<span class="lineno"> 175 </span>
+<span class="lineno"> 176 </span>    <span class="error">/**</span>
+<span class="lineno"> 177 </span><span class="error">     * Get the time in SimpleDateFormat that the user picked of a TimePicker, and opens the TimePickerDialog when the user clicks on the textView</span>
+<span class="lineno"> 178 </span><span class="error">     */</span>
+<span class="lineno"> 179 </span><span class="error">    @SuppressLint(&quot;SimpleDateFormat&quot;)</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:190:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 187 </span>        }
+<span class="lineno"> 188 </span>
+<span class="lineno"> 189 </span>        time_text_view.setOnClickListener {
+<span class="lineno"> 190 </span>            <span class="error">TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()</span>
+<span class="lineno"> 191 </span>        }
+<span class="lineno"> 192 </span>    }
+<span class="lineno"> 193 </span>    /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:193:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 190 </span>            TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+<span class="lineno"> 191 </span>        }
+<span class="lineno"> 192 </span>    }
+<span class="lineno"> 193 </span>    <span class="error">/**</span>
+<span class="lineno"> 194 </span><span class="error">     * Get the date in SimpleDateFormat that the user picked of a DatePicker, and opens the DatePickerDialog when the user clicks on the textView</span>
+<span class="lineno"> 195 </span><span class="error">     */</span>
+<span class="lineno"> 196 </span><span class="error">    @SuppressLint(&quot;SimpleDateFormat&quot;)</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:207:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 204 </span>            date_text_view.text = SimpleDateFormat(&quot;dd.MM.YYYY&quot;).format(cal.time)
+<span class="lineno"> 205 </span>        }
+<span class="lineno"> 206 </span>        date_text_view.setOnClickListener {
+<span class="lineno"> 207 </span>            <span class="error">DatePickerDialog(requireContext(), dateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()</span>
+<span class="lineno"> 208 </span>        }
+<span class="lineno"> 209 </span>    }
+<span class="lineno"> 210 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateGroupActivity.kt:43:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  40 </span>        submit_button.setOnClickListener(submitClickListener)
+<span class="lineno">  41 </span>        private_group_switch_button.setOnCheckedChangeListener(switchButtonChangeListener)
+<span class="lineno">  42 </span>        createGroupViewModel.createGroupLiveData.observe(this, Observer {newValue -&gt;
+<span class="lineno">  43 </span>            <span class="error">createGroupViewModel.observeCreateGroup(newValue, currentStudent, createGroupViewModel.groupIdLiveData.value,this)</span>
+<span class="lineno">  44 </span>        })
+<span class="lineno">  45 </span>        createGroupViewModel.updateMemberLiveData.observe(this, Observer {newValue -&gt;
+<span class="lineno">  46 </span>            createGroupViewModel.observeUpdateMember(newValue, currentStudent, createGroupViewModel.groupIdLiveData.value, this)
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateGroupActivity.kt:46:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  43 </span>            createGroupViewModel.observeCreateGroup(newValue, currentStudent, createGroupViewModel.groupIdLiveData.value,this)
+<span class="lineno">  44 </span>        })
+<span class="lineno">  45 </span>        createGroupViewModel.updateMemberLiveData.observe(this, Observer {newValue -&gt;
+<span class="lineno">  46 </span>            <span class="error">createGroupViewModel.observeUpdateMember(newValue, currentStudent, createGroupViewModel.groupIdLiveData.value, this)</span>
+<span class="lineno">  47 </span>        })
+<span class="lineno">  48 </span>        createGroupViewModel.updateUserGroupsLiveData.observe(this, Observer { newValue -&gt;
+<span class="lineno">  49 </span>            createGroupViewModel.observeUpdateUserGroups(newValue, this, this)
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateGroupActivity.kt:125:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 122 </span>        finish()
+<span class="lineno"> 123 </span>    }
+<span class="lineno"> 124 </span>
+<span class="lineno"> 125 </span>    <span class="error">/**</span>
+<span class="lineno"> 126 </span><span class="error">     * Help method that creates an istance of PrivateGroupCreatedFragment and display the dialog after a private group is created</span>
+<span class="lineno"> 127 </span><span class="error">     * This method belongs to ICreateGroupListener. It is used inside the HomeViewModel</span>
+<span class="lineno"> 128 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupOverviewFragment.kt:69:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  66 </span>            update_admin_rights.visibility = if(it) View.VISIBLE else View.GONE
+<span class="lineno">  67 </span>        }
+<span class="lineno">  68 </span>    }
+<span class="lineno">  69 </span>    <span class="error">/**</span>
+<span class="lineno">  70 </span><span class="error">     * Sets the correct values of the ui attributes that are corresponding to the [currentGroup],that the user has chosen</span>
+<span class="lineno">  71 </span><span class="error">     * Overrides the method that is called when an admin holds on another member to make him admin</span>
+<span class="lineno">  72 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupOverviewFragment.kt:110:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 107 </span>        updateGroup()
+<span class="lineno"> 108 </span>    }
+<span class="lineno"> 109 </span>
+<span class="lineno"> 110 </span>    <span class="error">/**</span>
+<span class="lineno"> 111 </span><span class="error">     * Help method that collects the user input of the screen and updates the Repository using the [groupOverviewViewModel]</span>
+<span class="lineno"> 112 </span><span class="error">     */</span>
+<span class="lineno"> 113 </span><span class="error">    private fun updateGroup() {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupSearchPrivateFragment.kt:69:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  66 </span>        groupSearchPrivateViewModel.findPrivateGroup(search_private_edit_text.text.toString().trim())
+<span class="lineno">  67 </span>    }
+<span class="lineno">  68 </span>
+<span class="lineno">  69 </span>    <span class="error">/**</span>
+<span class="lineno">  70 </span><span class="error">     * Calls the ViewModel method to join the group with the retrieved from searchGroup id</span>
+<span class="lineno">  71 </span><span class="error">     * This method belongs to IGroupSearchPrivateListener, and called from inside GroupSearchPrivateViewModel to join a group</span>
+<span class="lineno">  72 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupSearchPublicActivity.kt:70:9</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  67 </span>        val language = set_language.text.trim().toString().toLowerCase()
+<span class="lineno">  68 </span>        val minimumUsers = set_minimum_of_users.text.trim().toString().toLowerCase()
+<span class="lineno">  69 </span>        val moduleName = search_edit_text.text.trim().toString().toLowerCase()
+<span class="lineno">  70 </span>        <span class="error">groupSearchPublicViewModel.searchGroups(progress, language, minimumUsers, moduleName, currentStudent.university, this)</span>
+<span class="lineno">  71 </span>    }
+<span class="lineno">  72 </span>
+<span class="lineno">  73 </span>    /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupSearchPublicActivity.kt:138:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 135 </span>        return arrayOfFilters
+<span class="lineno"> 136 </span>    }
+<span class="lineno"> 137 </span>
+<span class="lineno"> 138 </span>    <span class="error">/**</span>
+<span class="lineno"> 139 </span><span class="error">     * Initialises the RecyclerViewAdapter for the group search results</span>
+<span class="lineno"> 140 </span><span class="error">     * This method belongs to IGroupSearchPublicListener. It is called from inside the GroupSearchPublicViewModel whenever the results group are fetched and ready</span>
+<span class="lineno"> 141 </span><span class="error">     * to be displayed</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupSearchPublicActivity.kt:145:9</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 142 </span>     */
+<span class="lineno"> 143 </span>    override fun initRecyclerViewAdapter() {
+<span class="lineno"> 144 </span>        results_group_recycler_view.layoutManager = LinearLayoutManager(this)
+<span class="lineno"> 145 </span>        <span class="error">val results = groupSearchPublicViewModel.listAllGroups(setFilters(), groupSearchPublicViewModel.retrievedResultLiveData.value!!)</span>
+<span class="lineno"> 146 </span>        val groupsRecyclerViewAdapter = object : ResultsGroupsRecyclerViewAdapter(results) {
+<span class="lineno"> 147 </span>            override fun joinGroup() {
+<span class="lineno"> 148 </span>                groupSearchPublicViewModel.joinGroup(
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupSearchPublicActivity.kt:158:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 155 </span>        results_group_recycler_view.adapter = groupsRecyclerViewAdapter
+<span class="lineno"> 156 </span>    }
+<span class="lineno"> 157 </span>
+<span class="lineno"> 158 </span>    <span class="error">/**</span>
+<span class="lineno"> 159 </span><span class="error">     * Help method that is used to set the [progress] text with the corresponding of the group result in the RecyclerView</span>
+<span class="lineno"> 160 </span><span class="error">     */</span>
+<span class="lineno"> 161 </span><span class="error">    override fun setProgressText(progress: String) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupSearchPublicActivity.kt:164:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 161 </span>    override fun setProgressText(progress: String) {
+<span class="lineno"> 162 </span>        progress_filter.text = progress
+<span class="lineno"> 163 </span>    }
+<span class="lineno"> 164 </span>    <span class="error">/**</span>
+<span class="lineno"> 165 </span><span class="error">     * Help method that is used to set the [language] text with the corresponding of the group result in the RecyclerView</span>
+<span class="lineno"> 166 </span><span class="error">     */</span>
+<span class="lineno"> 167 </span><span class="error">    override fun setLanguageText(language: String) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupSearchPublicActivity.kt:170:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 167 </span>    override fun setLanguageText(language: String) {
+<span class="lineno"> 168 </span>        language_filter.text = language
+<span class="lineno"> 169 </span>    }
+<span class="lineno"> 170 </span>    <span class="error">/**</span>
+<span class="lineno"> 171 </span><span class="error">     * Help method that is used to set the [minimumUsers] text with the corresponding of the group result in the RecyclerView</span>
+<span class="lineno"> 172 </span><span class="error">     */</span>
+<span class="lineno"> 173 </span><span class="error">    override fun setMinimumUsersText(minimumUsers: String) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/HomeActivity.kt:19:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  16 </span>import android.widget.PopupMenu
+<span class="lineno">  17 </span>import com.pse.peer2learn.ui.activities.interfaces.IHomeListener
+<span class="lineno">  18 </span>
+<span class="lineno">  19 </span><span class="error">/**</span>
+<span class="lineno">  20 </span><span class="error"> * This activity is used to show the groups of the [currentStudent] and also for main navigation to and from the different activities/fragments</span>
+<span class="lineno">  21 </span><span class="error"> */</span>
+<span class="lineno">  22 </span><span class="error">class HomeActivity : AppCompatActivity(), IHomeListener {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/HomeActivity.kt:28:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  25 </span>    lateinit var homeViewModel: HomeViewModel
+<span class="lineno">  26 </span>    lateinit var adapter: GroupsRecyclerViewAdapter
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>    <span class="error">/**</span>
+<span class="lineno">  29 </span><span class="error">     * Method for creating the activity. It also initialize the view model for the activity and observe the changes of liveData</span>
+<span class="lineno">  30 </span><span class="error">     */</span>
+<span class="lineno">  31 </span><span class="error">    override fun onCreate(savedInstanceState: Bundle?) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/HomeActivity.kt:91:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  88 </span>        finish()
+<span class="lineno">  89 </span>    }
+<span class="lineno">  90 </span>
+<span class="lineno">  91 </span>    <span class="error">/**</span>
+<span class="lineno">  92 </span><span class="error">     * Used to call the Open Group/Quit Group fragment after the user clicks on one of the groups he is already member of.</span>
+<span class="lineno">  93 </span><span class="error">     */</span>
+<span class="lineno">  94 </span><span class="error">    private fun startMenuFragment() {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/HomeActivity.kt:119:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 116 </span>        finish()
+<span class="lineno"> 117 </span>    }
+<span class="lineno"> 118 </span>
+<span class="lineno"> 119 </span>    <span class="error">/**</span>
+<span class="lineno"> 120 </span><span class="error">     * Creates a RecyclerViewAdapter and fills it with [currentStudent]'s groups and last sent messages within those groups</span>
+<span class="lineno"> 121 </span><span class="error">     * This method belongs to IHomeListener, and called from inside HomeViewModel. It will init the recyclerview for the groups when</span>
+<span class="lineno"> 122 </span><span class="error">     * the groups are fetched.</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/HomeActivity.kt:119:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 116 </span>        finish()
+<span class="lineno"> 117 </span>    }
+<span class="lineno"> 118 </span>
+<span class="lineno"> 119 </span>    <span class="error">/**</span>
+<span class="lineno"> 120 </span><span class="error">     * Creates a RecyclerViewAdapter and fills it with [currentStudent]'s groups and last sent messages within those groups</span>
+<span class="lineno"> 121 </span><span class="error">     * This method belongs to IHomeListener, and called from inside HomeViewModel. It will init the recyclerview for the groups when</span>
+<span class="lineno"> 122 </span><span class="error">     * the groups are fetched.</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/HomeMenuFragment.kt:42:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  39 </span>        return view
+<span class="lineno">  40 </span>    }
+<span class="lineno">  41 </span>
+<span class="lineno">  42 </span>    <span class="error">/**</span>
+<span class="lineno">  43 </span><span class="error">     * Method called when the view is created. It also initialize the view model for the Fragment and observe the changes of liveData</span>
+<span class="lineno">  44 </span><span class="error">     */</span>
+<span class="lineno">  45 </span><span class="error">    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/PrivateGroupCreatedFragment.kt:15:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  12 </span>import com.pse.peer2learn.utils.Constants
+<span class="lineno">  13 </span>import kotlinx.android.synthetic.main.fragment_private_group_created.*
+<span class="lineno">  14 </span>
+<span class="lineno">  15 </span><span class="error">/**</span>
+<span class="lineno">  16 </span><span class="error"> * This Fragment is used to show the user when a private group was successful created and shows the corresponing access code</span>
+<span class="lineno">  17 </span><span class="error"> */</span>
+<span class="lineno">  18 </span><span class="error">class PrivateGroupCreatedFragment : BottomSheetDialogFragment() {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/ProfileActivity.kt:42:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  39 </span>
+<span class="lineno">  40 </span>    private var deleteCounter = 0
+<span class="lineno">  41 </span>
+<span class="lineno">  42 </span>    <span class="error">/**</span>
+<span class="lineno">  43 </span><span class="error">     * Method for creating the activity. It also initialize the view model for the activity and observe the changes of liveData</span>
+<span class="lineno">  44 </span><span class="error">     */</span>
+<span class="lineno">  45 </span><span class="error">    override fun onCreate(savedInstanceState: Bundle?) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/ProfileActivity.kt:55:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  52 </span>
+<span class="lineno">  53 </span>        //Listener for updating user infos on successful
+<span class="lineno">  54 </span>        profileViewModel.checkValidUniversityLiveData.observe(this, Observer { newValue -&gt;
+<span class="lineno">  55 </span>            <span class="error">profileViewModel.checkUsername(newValue, username_edit_text.text.trim().toString(), currentStudent, this, this)</span>
+<span class="lineno">  56 </span>        })
+<span class="lineno">  57 </span>
+<span class="lineno">  58 </span>        profileViewModel.checkUniqueUserLiveData.observe(this, Observer { newValue -&gt;
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/RegistrationActivity.kt:29:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  26 </span>import kotlinx.android.synthetic.main.activity_registration.university_edit_text
+<span class="lineno">  27 </span>import kotlinx.android.synthetic.main.activity_registration.username_edit_text
+<span class="lineno">  28 </span>
+<span class="lineno">  29 </span><span class="error">/**</span>
+<span class="lineno">  30 </span><span class="error"> * This classed is used to register an user and allows the user to fill out the requiered Information for Profile Creation</span>
+<span class="lineno">  31 </span><span class="error"> */</span>
+<span class="lineno">  32 </span><span class="error">class RegistrationActivity : AppCompatActivity(), ISubmitListener {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/RegistrationActivity.kt:41:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  38 </span>    private var profileReference: StorageReference? = null
+<span class="lineno">  39 </span>    val uniList: ArrayList&lt;University&gt; = arrayListOf()
+<span class="lineno">  40 </span>
+<span class="lineno">  41 </span>    <span class="error">/**</span>
+<span class="lineno">  42 </span><span class="error">     * Method for creating the activity. It also initialize the view model for the activity and observe the changes of liveData</span>
+<span class="lineno">  43 </span><span class="error">     */</span>
+<span class="lineno">  44 </span><span class="error">    override fun onCreate(savedInstanceState: Bundle?) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/RegistrationActivity.kt:72:9</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  69 </span>        registration_profile_image.setOnClickListener(profileClickListener)
+<span class="lineno">  70 </span>
+<span class="lineno">  71 </span>        setUniList()
+<span class="lineno">  72 </span>        <span class="error">profileReference = FirebaseStorage.getInstance().getReference(Constants.STORAGE_PATH + userId + Constants.IMG_DIR)</span>
+<span class="lineno">  73 </span>    }
+<span class="lineno">  74 </span>
+<span class="lineno">  75 </span>    private val submitClickListener = View.OnClickListener {
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/RegistrationActivity.kt:133:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 130 </span>        }
+<span class="lineno"> 131 </span>    }
+<span class="lineno"> 132 </span>
+<span class="lineno"> 133 </span>    <span class="error">/**</span>
+<span class="lineno"> 134 </span><span class="error">     * Fetches list of universities from [UniversityRepository] and set the universities inside an adapter, so that the user can select a university</span>
+<span class="lineno"> 135 </span><span class="error">     * from a given list.</span>
+<span class="lineno"> 136 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/RegistrationActivity.kt:139:9</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 136 </span>     */
+<span class="lineno"> 137 </span>    private fun setUniList() {
+<span class="lineno"> 138 </span>        registrationViewModel.retrieveAllUnis()
+<span class="lineno"> 139 </span>        <span class="error">university_edit_text.setAdapter(ArrayAdapter&lt;University&gt;(this, android.R.layout.simple_dropdown_item_1line, uniList))</span>
+<span class="lineno"> 140 </span>    }
+<span class="lineno"> 141 </span>
+<span class="lineno"> 142 </span>    /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/SignInActivity.kt:23:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  20 </span>
+<span class="lineno">  21 </span>    lateinit var signInViewModel: SignInViewModel
+<span class="lineno">  22 </span>
+<span class="lineno">  23 </span>    <span class="error">/**</span>
+<span class="lineno">  24 </span><span class="error">     * Method for creating the activity. It also initialize the view model for the activity and observe the changes of liveData</span>
+<span class="lineno">  25 </span><span class="error">     */</span>
+<span class="lineno">  26 </span><span class="error">    override fun onCreate(savedInstanceState: Bundle?) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IProfileListener.kt:8:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">   5 </span> */
+<span class="lineno">   6 </span>interface IProfileListener {
+<span class="lineno">   7 </span>
+<span class="lineno">   8 </span>    <span class="error">/**</span>
+<span class="lineno">   9 </span><span class="error">     * method used to set [deleteCounter]. This counter is used for deleting account to verify the number of updated groups joined by a user</span>
+<span class="lineno">  10 </span><span class="error">     * when he is leaving a group</span>
+<span class="lineno">  11 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/AppointementsOverviewViewModel.kt:58:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  55 </span>        appointementRepository.delete(category)
+<span class="lineno">  56 </span>    }
+<span class="lineno">  57 </span>
+<span class="lineno">  58 </span>    <span class="error">/**</span>
+<span class="lineno">  59 </span><span class="error">     * Help method that is called when there is a new value in the retrieveLiveData and initialies the CategoriesRecyclerViewAdapter</span>
+<span class="lineno">  60 </span><span class="error">     */</span>
+<span class="lineno">  61 </span><span class="error">    fun observeRetrieve(newValue: RepositoryProgress, appointementsOverviewListener: IAppointementsOverviewListener) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:120:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 117 </span>        privateGroupRepository.create(studyGroup)
+<span class="lineno"> 118 </span>        _groupIdLiveData.value = studyGroup.id
+<span class="lineno"> 119 </span>    }
+<span class="lineno"> 120 </span>    <span class="error">/**</span>
+<span class="lineno"> 121 </span><span class="error">     * Help method that is called when there is a new value in the createGroupLiveData and initialies and updates the members of the group with [groupId] if the creation was successfull</span>
+<span class="lineno"> 122 </span><span class="error">     * Shows suitable Toast on fail</span>
+<span class="lineno"> 123 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:150:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 147 </span>            ).show()
+<span class="lineno"> 148 </span>        }
+<span class="lineno"> 149 </span>    }
+<span class="lineno"> 150 </span>    <span class="error">/**</span>
+<span class="lineno"> 151 </span><span class="error">     * Help method that is called when there is a new value in the updateUserGroupsLiveDate and shows a suitable Toast</span>
+<span class="lineno"> 152 </span><span class="error">     */</span>
+<span class="lineno"> 153 </span><span class="error">    fun observeUpdateUserGroups(newValue: RepositoryProgress, createGroupListener: ICreateGroupListener, context: Context) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:175:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 172 </span>        }
+<span class="lineno"> 173 </span>    }
+<span class="lineno"> 174 </span>
+<span class="lineno"> 175 </span>    <span class="error">/**</span>
+<span class="lineno"> 176 </span><span class="error">     * Help method that is called when there is a new value in the accessCodeUnique LiveData and depending on that whether its unique or not the code is setted to the group or a new code is generated</span>
+<span class="lineno"> 177 </span><span class="error">     */</span>
+<span class="lineno"> 178 </span><span class="error">    fun observeAccessCode(newValue: RepositoryProgress, createGroupListener: ICreateGroupListener) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:186:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 183 </span>        }
+<span class="lineno"> 184 </span>    }
+<span class="lineno"> 185 </span>
+<span class="lineno"> 186 </span>    <span class="error">/**</span>
+<span class="lineno"> 187 </span><span class="error">     * Assures that all the forms in the Group Activity that are required for the creation of the group are correctly set.</span>
+<span class="lineno"> 188 </span><span class="error">     * Checks if the [title] field of the group is empty or too long</span>
+<span class="lineno"> 189 </span><span class="error">     * Checks if the [description] field of the group is empty</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:186:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 183 </span>        }
+<span class="lineno"> 184 </span>    }
+<span class="lineno"> 185 </span>
+<span class="lineno"> 186 </span>    <span class="error">/**</span>
+<span class="lineno"> 187 </span><span class="error">     * Assures that all the forms in the Group Activity that are required for the creation of the group are correctly set.</span>
+<span class="lineno"> 188 </span><span class="error">     * Checks if the [title] field of the group is empty or too long</span>
+<span class="lineno"> 189 </span><span class="error">     * Checks if the [description] field of the group is empty</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPrivateViewModel.kt:51:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  48 </span>
+<span class="lineno">  49 </span>    constructor()
+<span class="lineno">  50 </span>
+<span class="lineno">  51 </span>    <span class="error">constructor(userRepository: UserRepository, memberRepository: MemberRepository, privateGroupRepository: PrivateGroupRepository): this() {</span>
+<span class="lineno">  52 </span><span class="error">        this.userRepository = userRepository</span>
+<span class="lineno">  53 </span><span class="error">        this.memberRepository = memberRepository</span>
+<span class="lineno">  54 </span><span class="error">        this.privateGroupRepository = privateGroupRepository</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPrivateViewModel.kt:84:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  81 </span>        }
+<span class="lineno">  82 </span>
+<span class="lineno">  83 </span>    }
+<span class="lineno">  84 </span>    <span class="error">/**</span>
+<span class="lineno">  85 </span><span class="error">     * Help method that is called when there is a new value in the retrievedGroupLiveData and joins a group if it exists</span>
+<span class="lineno">  86 </span><span class="error">     */</span>
+<span class="lineno">  87 </span><span class="error">    fun observeRetrieveGroup(newValue: StudyGroup?, groupSearchPrivateListener: IGroupSearchPrivateListener,context: Context) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPublicViewModel.kt:60:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  57 </span>
+<span class="lineno">  58 </span>    constructor()
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>    <span class="error">constructor(userRepository: UserRepository, memberRepository: MemberRepository, groupRepository: GroupRepository): this() {</span>
+<span class="lineno">  61 </span><span class="error">        this.userRepository = userRepository</span>
+<span class="lineno">  62 </span><span class="error">        this.memberRepository = memberRepository</span>
+<span class="lineno">  63 </span><span class="error">        this.groupRepository = groupRepository</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPublicViewModel.kt:149:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 146 </span>            _groupAlreadyJoined.value = true
+<span class="lineno"> 147 </span>        }
+<span class="lineno"> 148 </span>    }
+<span class="lineno"> 149 </span>    <span class="error">/**</span>
+<span class="lineno"> 150 </span><span class="error">     * Help method that is called when there is a new value in the RetrievedResultLiveData and if it isnt empty initialises the RecyclerViewAdapter</span>
+<span class="lineno"> 151 </span><span class="error">     */</span>
+<span class="lineno"> 152 </span><span class="error">    fun observeRetrievedList(newValue: ArrayList&lt;StudyGroup&gt;, groupSearchPublicListener: IGroupSearchPublicListener) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPublicViewModel.kt:175:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 172 </span>        }
+<span class="lineno"> 173 </span>    }
+<span class="lineno"> 174 </span>
+<span class="lineno"> 175 </span>    <span class="error">/**</span>
+<span class="lineno"> 176 </span><span class="error">     * Searches for a group with the chosen by the user filters, depending on that, whether the corresponding text field is empty or not</span>
+<span class="lineno"> 177 </span><span class="error">     */</span>
+<span class="lineno"> 178 </span><span class="error">    fun searchGroups(progress: String, language: String, minimumUsers: String, moduleName: String,</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/HomeMenuViewModel.kt:57:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  54 </span>
+<span class="lineno">  55 </span>    constructor()
+<span class="lineno">  56 </span>
+<span class="lineno">  57 </span>    <span class="error">constructor(userRepository: UserRepository, groupRepository: GroupRepository, memberRepository: MemberRepository): this() {</span>
+<span class="lineno">  58 </span><span class="error">        this.memberRepository = memberRepository</span>
+<span class="lineno">  59 </span><span class="error">        this.groupRepository = groupRepository</span>
+<span class="lineno">  60 </span><span class="error">        this.userRepository = userRepository</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/HomeMenuViewModel.kt:118:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 115 </span>        }
+<span class="lineno"> 116 </span>    }
+<span class="lineno"> 117 </span>
+<span class="lineno"> 118 </span>    <span class="error">/**</span>
+<span class="lineno"> 119 </span><span class="error">     * Checks number of participants of a group that has been exitted from</span>
+<span class="lineno"> 120 </span><span class="error">     */</span>
+<span class="lineno"> 121 </span><span class="error">    fun observeUpdateUser(newValue: RepositoryProgress, currentGroupId: String, homeMenuListener: IHomeMenuListener, context: Context) {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ProfileViewModel.kt:88:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  85 </span>
+<span class="lineno">  86 </span>    constructor()
+<span class="lineno">  87 </span>
+<span class="lineno">  88 </span>    <span class="error">constructor(userRepository: UserRepository, memberRepository: MemberRepository, groupRepository: GroupRepository, universityRepository: UniversityRepository): this() {</span>
+<span class="lineno">  89 </span><span class="error">        this.memberRepository = memberRepository</span>
+<span class="lineno">  90 </span><span class="error">        this.groupRepository = groupRepository</span>
+<span class="lineno">  91 </span><span class="error">        this.userRepository = userRepository</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ProfileViewModel.kt:169:9</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 166 </span>                val signInIntent = Intent(context, SignInActivity::class.java)
+<span class="lineno"> 167 </span>                context.startActivity(signInIntent)
+<span class="lineno"> 168 </span>            }
+<span class="lineno"> 169 </span>        <span class="error">signOut(context)</span> // ToDo Prüfe ob SignOut jetzt immer richtig funktioniert, wenn ja, kann dies in einer Woche entfernt werden
+<span class="lineno"> 170 </span>    }
+<span class="lineno"> 171 </span>
+<span class="lineno"> 172 </span>    /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ProfileViewModel.kt:320:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 317 </span>        }
+<span class="lineno"> 318 </span>    }
+<span class="lineno"> 319 </span>
+<span class="lineno"> 320 </span>    <span class="error">/**</span>
+<span class="lineno"> 321 </span><span class="error">     * On every successful deletion of member entry decrements [deleteCounter]</span>
+<span class="lineno"> 322 </span><span class="error">     * If [deleteCounter] reaches zero, starts deletion of empty groups</span>
+<span class="lineno"> 323 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ProfileViewModel.kt:334:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 331 </span>        }
+<span class="lineno"> 332 </span>    }
+<span class="lineno"> 333 </span>
+<span class="lineno"> 334 </span>    <span class="error">/**</span>
+<span class="lineno"> 335 </span><span class="error">     * On every successful update of admin credentials decrements [deleteCounter]</span>
+<span class="lineno"> 336 </span><span class="error">     * If [deleteCounter] reaches zero, starts deletion of empty groups</span>
+<span class="lineno"> 337 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ProfileViewModel.kt:348:5</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 345 </span>        }
+<span class="lineno"> 346 </span>    }
+<span class="lineno"> 347 </span>
+<span class="lineno"> 348 </span>    <span class="error">/**</span>
+<span class="lineno"> 349 </span><span class="error">     * On every successful deletion of empty group decrements [deleteCounter]</span>
+<span class="lineno"> 350 </span><span class="error">     * If [deleteCounter] reaches zero, starts deletion of user from the database</span>
+<span class="lineno"> 351 </span><span class="error">     */</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ChatRecyclerViewAdapter.kt:96:13</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  93 </span>         */
+<span class="lineno">  94 </span>        private fun startDownload(message: String) {
+<span class="lineno">  95 </span>            val request = DownloadManager.Request(Uri.parse(message))
+<span class="lineno">  96 </span>            <span class="error">request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)</span>
+<span class="lineno">  97 </span>            request.setTitle(R.string.download.toString())
+<span class="lineno">  98 </span>            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+<span class="lineno">  99 </span>            request.setDestinationInExternalPublicDir(
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/GroupsRecyclerViewAdapter.kt:14:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  11 </span>import kotlinx.android.synthetic.main.group_item_layout.view.*
+<span class="lineno">  12 </span>
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span><span class="error">abstract</span> class GroupsRecyclerViewAdapter(private val groupList: ArrayList&lt;StudyGroup&gt;, private val listMessage: HashMap&lt;String, Message&gt;, private val userId: String): RecyclerView.Adapter&lt;GroupsRecyclerViewAdapter.GroupsViewHolder&gt;(){
+<span class="lineno">  15 </span>
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span>    class GroupsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/GroupsRecyclerViewAdapter.kt:31:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  28 </span>        fun setLastMessage(lastMessage: Message) {
+<span class="lineno">  29 </span>            itemView.date_text_view.text = Utils.convertDate(lastMessage.date*1000)
+<span class="lineno">  30 </span>            itemView.last_message_text_view.text =
+<span class="lineno">  31 </span>                <span class="error">&quot;${lastMessage.senderName}: ${if (lastMessage.message.length &gt; 30) lastMessage.message.substring(0, 30) else lastMessage.message}&quot;</span>
+<span class="lineno">  32 </span>        }
+<span class="lineno">  33 </span>
+<span class="lineno">  34 </span>        /**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/MembersRecyclerViewAdapter.kt:15:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  12 </span>import com.pse.peer2learn.models.Message
+<span class="lineno">  13 </span>import kotlinx.android.synthetic.main.member_item_layout.view.*
+<span class="lineno">  14 </span>
+<span class="lineno">  15 </span><span class="error">abstract</span> class MembersRecyclerViewAdapter(firestoreOptions: FirestoreRecyclerOptions&lt;Member&gt;, private val context: Context): FirestoreRecyclerAdapter&lt;Member, MembersRecyclerViewAdapter.MembersViewHolder&gt;(firestoreOptions) {
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span>    var clickedMember = Member()
+<span class="lineno">  18 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ResultsGroupsRecyclerViewAdapter.kt:12:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">   9 </span>import com.pse.peer2learn.models.StudyGroup
+<span class="lineno">  10 </span>import kotlinx.android.synthetic.main.group_result_layout.view.*
+<span class="lineno">  11 </span>
+<span class="lineno">  12 </span><span class="error">abstract</span> class ResultsGroupsRecyclerViewAdapter(val groupList: ArrayList&lt;StudyGroup&gt;): RecyclerView.Adapter&lt;ResultsGroupsRecyclerViewAdapter.GroupsViewHolder&gt;() {
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span>    var clickedItemPosition = 0
+<span class="lineno">  15 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ViewPagerAdapter.kt:13:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  10 </span>import com.pse.peer2learn.ui.activities.GroupOverviewFragment
+<span class="lineno">  11 </span>import com.pse.peer2learn.utils.Constants
+<span class="lineno">  12 </span>
+<span class="lineno">  13 </span><span class="error">class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val currentUser: Student, private val group: StudyGroup): FragmentStateAdapter(fragmentActivity) {</span>
+<span class="lineno">  14 </span><span class="error"></span>
+<span class="lineno">  15 </span><span class="error">    /**</span>
+<span class="lineno">  16 </span><span class="error">     * @return the number of fragments inside GroupActivity = 3</span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="NewLineAtEndOfFile" open="open">
+    <summary class="rule-container"><span class="rule">NewLineAtEndOfFile: 57 </span><span class="description">Checks whether files end with a line separator.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Appointment.kt:1:1</span><span class="message">The file Appointment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.models</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * A Model class that represents Appointments in a Study Group
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Category.kt:1:1</span><span class="message">The file Category.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.models</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * A model class that represents Categories with appointments in a StudyGroup
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Language.kt:1:1</span><span class="message">The file Language.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.models</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import java.io.Serializable
+<span class="lineno">   4 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Member.kt:1:1</span><span class="message">The file Member.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.models</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * A model class that represents the members in a studygroup
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/Student.kt:1:1</span><span class="message">The file Student.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.models</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import java.io.Serializable
+<span class="lineno">   4 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/StudyGroup.kt:1:1</span><span class="message">The file StudyGroup.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.models</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import java.io.Serializable
+<span class="lineno">   4 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/models/University.kt:1:1</span><span class="message">The file University.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.models</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import java.io.Serializable
+<span class="lineno">   4 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/AbstractRepository.kt:1:1</span><span class="message">The file AbstractRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.google.firebase.firestore.FirebaseFirestore
+<span class="lineno">   4 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/AppointmentRepository.kt:1:1</span><span class="message">The file AppointmentRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.util.Log
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/GroupRepository.kt:1:1</span><span class="message">The file GroupRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.util.Log
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MemberRepository.kt:1:1</span><span class="message">The file MemberRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.util.Log
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/MessageRepository.kt:1:1</span><span class="message">The file MessageRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/PrivateGroupRepository.kt:1:1</span><span class="message">The file PrivateGroupRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.util.Log
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/UniversityRepository.kt:1:1</span><span class="message">The file UniversityRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.lifecycle.MutableLiveData
+<span class="lineno">   4 </span>import com.google.firebase.firestore.FirebaseFirestore
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/repositories/UserRepository.kt:1:1</span><span class="message">The file UserRepository.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.repositories</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.util.Log
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/AppointmentsOverviewFragment.kt:1:1</span><span class="message">The file AppointmentsOverviewFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.fragment.app.Fragment
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/ChatsFragment.kt:1:1</span><span class="message">The file ChatsFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.app.Activity
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateAppointmentFragment.kt:1:1</span><span class="message">The file CreateAppointmentFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.annotation.SuppressLint
+<span class="lineno">   4 </span>import android.app.DatePickerDialog
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/CreateGroupActivity.kt:1:1</span><span class="message">The file CreateGroupActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import androidx.appcompat.app.AppCompatActivity
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupActivity.kt:1:1</span><span class="message">The file GroupActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import androidx.appcompat.app.AppCompatActivity
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/GroupOverviewFragment.kt:1:1</span><span class="message">The file GroupOverviewFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.os.Bundle
+<span class="lineno">   4 </span>import androidx.fragment.app.Fragment
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/HomeMenuFragment.kt:1:1</span><span class="message">The file HomeMenuFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/PrivateGroupCreatedFragment.kt:1:1</span><span class="message">The file PrivateGroupCreatedFragment.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.os.Bundle
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/ProfileActivity.kt:1:1</span><span class="message">The file ProfileActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.annotation.SuppressLint
+<span class="lineno">   4 </span>import android.app.Activity
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/RegistrationActivity.kt:1:1</span><span class="message">The file RegistrationActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.annotation.SuppressLint
+<span class="lineno">   4 </span>import android.app.Activity
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/SignInActivity.kt:1:1</span><span class="message">The file SignInActivity.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import androidx.appcompat.app.AppCompatActivity
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IAppointementsOverviewListener.kt:1:1</span><span class="message">The file IAppointementsOverviewListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>
+<span class="lineno">   4 </span>/**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IChatsListener.kt:1:1</span><span class="message">The file IChatsListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/ICreateAppointmentListener.kt:1:1</span><span class="message">The file ICreateAppointmentListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>
+<span class="lineno">   4 </span>/**
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/ICreateGroupListener.kt:1:1</span><span class="message">The file ICreateGroupListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IDialogDismissListener.kt:1:1</span><span class="message">The file IDialogDismissListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IGroupSearchPrivateListener.kt:1:1</span><span class="message">The file IGroupSearchPrivateListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IGroupSearchPublicListener.kt:1:1</span><span class="message">The file IGroupSearchPublicListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IHomeListener.kt:1:1</span><span class="message">The file IHomeListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>/**
+<span class="lineno">   3 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+<span class="lineno">   4 </span> * It is also helpful for unit testing
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IHomeMenuListener.kt:1:1</span><span class="message">The file IHomeMenuListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>/**
+<span class="lineno">   3 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+<span class="lineno">   4 </span> * It is also helpful for unit testing
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/IProfileListener.kt:1:1</span><span class="message">The file IProfileListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>/**
+<span class="lineno">   3 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+<span class="lineno">   4 </span> * It is also helpful for unit testing
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/ISignInListener.kt:1:1</span><span class="message">The file ISignInListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.pse.peer2learn.models.Student
+<span class="lineno">   4 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/activities/interfaces/ISubmitListener.kt:1:1</span><span class="message">The file ISubmitListener.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.activities.interfaces</span>
+<span class="lineno">   2 </span>/**
+<span class="lineno">   3 </span> * This interface is added to seperate logic from the activity and avoid using views from inside a viewmodel
+<span class="lineno">   4 </span> * It is also helpful for unit testing
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/AppointementsOverviewViewModel.kt:1:1</span><span class="message">The file AppointementsOverviewViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.lifecycle.LiveData
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ChatsViewModel.kt:1:1</span><span class="message">The file ChatsViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Intent
+<span class="lineno">   4 </span>import android.util.Log
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateAppointementViewModel.kt:1:1</span><span class="message">The file CreateAppointementViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.lifecycle.LiveData
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:1:1</span><span class="message">The file CreateGroupViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.widget.Toast
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupOverviewViewModel.kt:1:1</span><span class="message">The file GroupOverviewViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.lifecycle.LiveData
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPublicViewModel.kt:1:1</span><span class="message">The file GroupSearchPublicViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.widget.Toast
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupsViewModel.kt:1:1</span><span class="message">The file GroupsViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.lifecycle.LiveData
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/HomeMenuViewModel.kt:1:1</span><span class="message">The file HomeMenuViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import androidx.lifecycle.LiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/HomeViewModel.kt:1:1</span><span class="message">The file HomeViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.lifecycle.LiveData
+<span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/ProfileViewModel.kt:1:1</span><span class="message">The file ProfileViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/RegistrationViewModel.kt:1:1</span><span class="message">The file RegistrationViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.widget.Toast
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/SignInViewModel.kt:1:1</span><span class="message">The file SignInViewModel.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.ui.viewmodels</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.content.Intent
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/RepositoryProgress.kt:1:1</span><span class="message">The file RepositoryProgress.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.utils</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>/**
+<span class="lineno">   4 </span> * Help class to make the observing and managing of LiveData easier
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/Utils.kt:1:1</span><span class="message">The file Utils.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.utils</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import java.text.SimpleDateFormat
+<span class="lineno">   4 </span>import java.util.*
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/CategoriesRecyclerViewAdapter.kt:1:1</span><span class="message">The file CategoriesRecyclerViewAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.utils.adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.annotation.SuppressLint
+<span class="lineno">   4 </span>import android.app.AlarmManager
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ChatRecyclerViewAdapter.kt:1:1</span><span class="message">The file ChatRecyclerViewAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.utils.adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.app.DownloadManager
+<span class="lineno">   4 </span>import android.content.Context
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/GroupsRecyclerViewAdapter.kt:1:1</span><span class="message">The file GroupsRecyclerViewAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.utils.adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.view.LayoutInflater
+<span class="lineno">   4 </span>import android.view.View
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ResultsGroupsRecyclerViewAdapter.kt:1:1</span><span class="message">The file ResultsGroupsRecyclerViewAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.utils.adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import android.content.Context
+<span class="lineno">   4 </span>import android.view.LayoutInflater
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/adapters/ViewPagerAdapter.kt:1:1</span><span class="message">The file ViewPagerAdapter.kt is not ending with a new line.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.pse.peer2learn.utils.adapters</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import androidx.fragment.app.Fragment
+<span class="lineno">   4 </span>import androidx.fragment.app.FragmentActivity
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="ReturnCount" open="open">
+    <summary class="rule-container"><span class="rule">ReturnCount: 1 </span><span class="description">Restrict the number of return statements in methods.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/CreateGroupViewModel.kt:193:9</span><span class="message">Function validateFormValues has 6 return statements which exceeds the limit of 2.</span>
+        <pre><code><span class="lineno"> 190 </span>     * Checks if the [numberOfPersons] is in the allowed range
+<span class="lineno"> 191 </span>     * Checks if the [language] field is empty
+<span class="lineno"> 192 </span>     */
+<span class="lineno"> 193 </span>    fun <span class="error">validateFormValues</span>(title: String, description: String, numberOfPersons: Int, language: String, context: Context): Boolean {
+<span class="lineno"> 194 </span>        if (title.isEmpty()) {
+<span class="lineno"> 195 </span>            Toast.makeText(context, context.getString(R.string.title_required), Toast.LENGTH_SHORT).show()
+<span class="lineno"> 196 </span>            return false
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="UtilityClassWithPublicConstructor" open="open">
+    <summary class="rule-container"><span class="rule">UtilityClassWithPublicConstructor: 2 </span><span class="description">The class declaration is unnecessary because it only contains utility functions. An object declaration should be used instead.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/Constants.kt:5:1</span><span class="message">The class Constants only contains utility functions. Consider defining it as an object.</span>
+        <pre><code><span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.pse.peer2learn.ui.activities.GroupSearchPrivateFragment
+<span class="lineno">   4 </span>
+<span class="lineno">   5 </span><span class="error">/**</span>
+<span class="lineno">   6 </span><span class="error"> * Help Class that is used to make the programm more flexible and easy adjustable</span>
+<span class="lineno">   7 </span><span class="error"> */</span>
+<span class="lineno">   8 </span><span class="error">class Constants {</span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/utils/Utils.kt:6:1</span><span class="message">The class Utils only contains utility functions. Consider defining it as an object.</span>
+        <pre><code><span class="lineno">   3 </span>import java.text.SimpleDateFormat
+<span class="lineno">   4 </span>import java.util.*
+<span class="lineno">   5 </span>
+<span class="lineno">   6 </span><span class="error">class Utils {</span>
+<span class="lineno">   7 </span><span class="error"></span>
+<span class="lineno">   8 </span><span class="error">    companion object {</span>
+<span class="lineno">   9 </span><span class="error"></span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="WildcardImport" open="open">
+    <summary class="rule-container"><span class="rule">WildcardImport: 2 </span><span class="description">Wildcard imports should be replaced with imports using fully qualified class names. Wildcard imports can lead to naming conflicts. A library update can introduce naming clashes with your classes which results in compilation errors.</span></summary>
+    <ul>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/AppointementsOverviewViewModel.kt:7:1</span><span class="message">com.pse.peer2learn.repositories.* is a wildcard import. Replace it with fully qualified imports.</span>
+        <pre><code><span class="lineno">   4 </span>import androidx.lifecycle.MutableLiveData
+<span class="lineno">   5 </span>import androidx.lifecycle.ViewModel
+<span class="lineno">   6 </span>import com.pse.peer2learn.models.Category
+<span class="lineno">   7 </span><span class="error">import com.pse.peer2learn.repositories.*</span>
+<span class="lineno">   8 </span>import com.pse.peer2learn.ui.activities.interfaces.IAppointementsOverviewListener
+<span class="lineno">   9 </span>import com.pse.peer2learn.utils.RepositoryProgress
+<span class="lineno">  10 </span>
+</code></pre>
+      </li>
+      <li><span class="location">/Users/tareksellami/Desktop/Peer2Learn/lerngruppenfinder_allgemein/Implementierung/app/src/main/java/com/pse/peer2learn/ui/viewmodels/GroupSearchPublicViewModel.kt:9:1</span><span class="message">com.pse.peer2learn.models.* is a wildcard import. Replace it with fully qualified imports.</span>
+        <pre><code><span class="lineno">   6 </span>import androidx.lifecycle.MutableLiveData
+<span class="lineno">   7 </span>import androidx.lifecycle.ViewModel
+<span class="lineno">   8 </span>import com.pse.peer2learn.R
+<span class="lineno">   9 </span><span class="error">import com.pse.peer2learn.models.*</span>
+<span class="lineno">  10 </span>import com.pse.peer2learn.repositories.GroupRepository
+<span class="lineno">  11 </span>import com.pse.peer2learn.repositories.MemberRepository
+<span class="lineno">  12 </span>import com.pse.peer2learn.repositories.UserRepository
+</code></pre>
+      </li>
+    </ul>
+  </details>
+</div>
+
+
+generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.10.0</a> on 2020-08-28 17:40:17 UTC.
+
+</body>
+</html>

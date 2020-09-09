@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activities.AppointmentsOverviewFragment"
+    android:id="@+id/appointments_overview_fragment">
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_above="@id/add_category_button"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/categories_recycler_view" />
+
+    <TextView
+        android:id="@+id/hold_appointments_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hold_alarm"
+        android:textColor="@color/blue"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"/>
+
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/add_category_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/plus"
+        android:layout_margin="10dp"
+        app:fab_colorNormal="@color/green"
+        app:fab_colorPressed="@color/green"
+        app:fab_size="mini" />
+
+</RelativeLayout>

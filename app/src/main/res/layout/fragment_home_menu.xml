@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".ui.activities.HomeMenuFragment"
+    android:id="@+id/home_menu_fragment">
+
+    <TextView
+        android:id="@+id/open_group_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/open_group"
+        android:textColor="@color/dark_grey"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/quit_group_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="@string/quit_group"
+        android:textColor="@color/dark_grey"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+</LinearLayout>

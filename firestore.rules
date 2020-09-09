@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore { 
+
+		match /{document=**} {
+      allow read, write: if request.auth != null
+    }
+    match /databases/{database}/documents {
+    // write can be update,delete,create
+    //read can be list and get
+    match /USERS/{uid} {
+    //allows read if the user is authentificated
+		allow read, create: if request.auth != null; 
+    //That way the user can only update the documents, but not delete or create a new one.
+    allow update: if request.auth.uid == uid && request.auth != null;
+    allow delete: if request.auth.uid == uid && request.auth != null
+  	}
+
+    // Only write in a Group if you are Member of a Group
+    match /MESSAGES/{groupId} {
+    	allow read, write: if request.auth.uid in get(/databases/$(database)/documents/GROUPS/$(groupId)/MEMBERS)
+    }
+    // Only update Member.admin of your Group if you are Admin of a Group
+    match /GROUPS/{groupId}/MEMBERS {
+    allow read : if request.auth.uid in get(/databases/$(database)/documents/GROUPS/$(groupId)/MEMBERS)
+    allow write: if request.auth != null 
+    }
+    //: if request.auth != null && get(/databases/$(database)/documents/GROUPS/{groupId}/MEMBERS/$(request.auth.uid)).data.admin == true
+    
+    // Only Write/Create/Update Appointments+Categories if you are Admin of a Group
+    match /GROUPS/{groupId}/CATEGORY{
+    allow read : if request.auth.uid in get(/databases/$(database)/documents/GROUPS/$(groupId)/MEMBERS)
+    allow write : if request.auth != null && get(/databases/$(database)/documents/GROUPS/{groupId}/MEMBERS/$(request.auth.uid)).data.admin == true
+    }
+    
+    // Check Storage/Rules
+	
+  	//Allows to read university if the user is authentificated and write is not allowed
+    match /UNIVERSITY/{documents=**} {
+    allow read: if request.auth != null; 
+    allow write: if false
+    }
+  }
+}
